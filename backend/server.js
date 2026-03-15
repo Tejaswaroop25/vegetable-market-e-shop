@@ -1,48 +1,58 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const connectDB = require('./db');
 const { seedVegetables } = require('./vegetableController');
 
-// Connect to database
 const start = async () => {
-    await connectDB();
-    
-    const app = express();
+    try {
+        console.log('Starting server...');
+        
+        // Connect to database
+        await connectDB();
 
-app.use(cors({
-    origin: [
-        'http://localhost:5000',
-        'http://127.0.0.1:5000',
-        'http://localhost:5500',
-        'http://127.0.0.1:5500',
-        'http://localhost:5501',
-        'http://127.0.0.1:5501'
-    ],
-    credentials: true
-}));
-app.use(express.json());
+        const app = express();
 
-// Routes
-app.use('/api/vegetables', require('./vegetableRoutes'));
-app.use('/api/orders', require('./orderRoutes'));
-app.use('/api/users', require('./userRoutes'));
+        app.use(cors({
+            origin: '*', // For production, you can later restrict this to your Render URL
+            credentials: true
+        }));
+        app.use(express.json());
 
-    // Seed DB
-    seedVegetables();
+        // Health check route
+        app.get('/health', (req, res) => {
+            res.status(200).send('Server is running');
+        });
 
-    // Serve frontend static files
-    app.use(express.static(path.join(__dirname, '../frontend')));
+        // Routes
+        app.use('/api/vegetables', require('./vegetableRoutes'));
+        app.use('/api/orders', require('./orderRoutes'));
+        app.use('/api/users', require('./userRoutes'));
 
-    app.use((req, res) => {
-        res.sendFile(path.join(__dirname, '../frontend/index.html'));
-    });
+        // Seed DB
+        console.log('Synchronizing vegetables...');
+        await seedVegetables();
+        console.log('Vegetables synchronized successfully.');
 
-    const PORT = process.env.PORT || 5000;
+        // Serve frontend static files
+        app.use(express.static(path.join(__dirname, '../frontend')));
 
-    app.listen(PORT, () => {
-        console.log(`Server running on port ${PORT}`);
-    });
+        // SPA routing - serve index.html for unknown routes
+        app.get('*', (req, res) => {
+            res.sendFile(path.join(__dirname, '../frontend/index.html'));
+        });
+
+        const PORT = process.env.PORT || 5000;
+
+        app.listen(PORT, () => {
+            console.log(`Server running on port ${PORT}`);
+        });
+
+    } catch (error) {
+        console.error('Fatal initialization error:', error);
+        process.exit(1);
+    }
 };
 
 start();
