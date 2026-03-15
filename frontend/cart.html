@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - Fresh Veggies</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-leaf"></i> Fresh Veggies
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="myorders.html" id="myOrdersLinkNav" style="display:none;">My Orders</a>
+            <a href="admin.html" id="adminBtnNav" class="btn-admin" style="display:none;">Admin</a>
+            <a href="login.html" id="loginBtnNav">Login</a>
+            <a href="cart.html" class="active cart-icon-nav">
+                <i class="fa-solid fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </a>
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="checkbox">
+                    <input type="checkbox" id="checkbox" />
+                    <div class="slider"></div>
+                </label>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cart Main Content -->
+    <main class="container">
+        <h2 class="page-header">Shopping Cart</h2>
+        
+        <div class="cart-layout">
+            <div class="cart-items" id="cartItemsContainer">
+                <!-- Cart items will be injected here by JS -->
+                <p>Loading cart...</p>
+            </div>
+            
+            <div class="order-summary">
+                <h3>Order Summary</h3>
+                <div class="summary-details" style="margin-top: 15px;">
+                    <div class="summary-row">
+                        <span>Items Total</span>
+                        <span id="summaryItemsTotal">₹0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Delivery Fee</span>
+                        <span>Free</span>
+                    </div>
+                    <div class="summary-row summary-total">
+                        <span>Grand Total</span>
+                        <span id="summaryGrandTotal">₹0</span>
+                    </div>
+                </div>
+                <button class="checkout-btn" onclick="goToCheckout()">Proceed to Checkout</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3>Fresh Veggies</h3>
+                <p>Bringing the best of the farms to your kitchen.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p><i class="fa-solid fa-phone"></i> +91 98765 43210</p>
+                <p><i class="fa-solid fa-envelope"></i> help@freshveggies.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Fresh Veggies. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
