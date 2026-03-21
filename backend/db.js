@@ -9,10 +9,13 @@ const connectDB = async () => {
             process.exit(1);
         }
         
+        const maskedUri = uri ? uri.replace(/\/\/[^@]+@/, "//****:****@") : 'undefined';
+        console.log(`Attempting to connect to MongoDB with URI: ${maskedUri}`);
         const conn = await mongoose.connect(uri);
         console.log(`MongoDB Connected: ${conn.connection.host}`);
     } catch (error) {
-        console.error(`MongoDB Connection Error: ${error.message}`);
+        const maskedUri = process.env.MONGO_URI ? process.env.MONGO_URI.replace(/\/\/[^@]+@/, "//****:****@") : 'undefined';
+        console.error(`MongoDB Connection Error using URI [${maskedUri}]: ${error.message}`);
         process.exit(1);
     }
 };
