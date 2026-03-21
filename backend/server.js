@@ -39,7 +39,7 @@ const start = async () => {
         app.use(express.static(path.join(__dirname, '../frontend')));
 
         // SPA routing - serve index.html for unknown routes
-        app.get('*', (req, res) => {
+        app.get(/.*/, (req, res) => {
             res.sendFile(path.join(__dirname, '../frontend/index.html'));
         });
 
