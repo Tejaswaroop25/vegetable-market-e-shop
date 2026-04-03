@@ -268,7 +268,7 @@ input:checked+.slider:before {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-fill-color: transparent;
+    color: transparent;
     animation: shine 3s linear infinite;
     text-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
@@ -403,22 +403,23 @@ input:checked+.slider:before {
 }
 
 .add-to-cart-btn {
-    background: var(--primary-light);
+    background: linear-gradient(135deg, var(--primary-light), var(--primary-color));
     color: white;
     border: none;
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: var(--transition);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
 }
 
 .add-to-cart-btn:hover {
-    background: var(--primary-color);
-    transform: scale(1.1);
+    transform: scale(1.15) rotate(5deg);
+    box-shadow: 0 6px 15px rgba(76, 175, 80, 0.4);
 }
 
 .add-to-cart-btn:active {
@@ -587,21 +588,51 @@ input:checked+.slider:before {
 
 .checkout-btn {
     width: 100%;
-    padding: 15px;
-    background: var(--primary-color);
+    padding: 16px 24px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 14px;
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     margin-top: 20px;
-    transition: var(--transition);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    box-shadow: 0 4px 15px rgba(46, 125, 50, 0.2);
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.5px;
 }
 
 .checkout-btn:hover {
-    background: var(--primary-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(46, 125, 50, 0.4);
+    filter: brightness(1.05);
 }
+
+.checkout-btn:active {
+    transform: translateY(-1px) scale(0.98);
+    box-shadow: 0 4px 10px rgba(46, 125, 50, 0.2);
+}
+
+.checkout-btn i {
+    font-size: 20px;
+}
+
+/* WhatsApp Specialized Order Button */
+.checkout-btn.whatsapp-btn {
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+}
+
+.checkout-btn.whatsapp-btn:hover {
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+}
+
 
 /* Checkout Form */
 .checkout-form {
