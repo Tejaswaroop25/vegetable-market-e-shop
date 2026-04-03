@@ -55,14 +55,37 @@ a {
 /* --- Navbar --- */
 .navbar {
     background-color: var(--card-bg);
-    padding: 15px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     box-shadow: var(--shadow-sm);
     position: sticky;
     top: 0;
     z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+}
+
+.navbar-top {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 5px;
+}
+
+.centered-logo {
+    font-size: 28px;
+    letter-spacing: 1px;
+}
+
+.navbar-bottom {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .logo {
@@ -780,21 +803,33 @@ footer {
 
 @media (max-width: 768px) {
     .navbar {
-        flex-wrap: wrap;
-        padding: 10px 15px;
-        gap: 8px;
+        padding: 5px 0;
     }
 
-    .logo {
-        font-size: 18px;
-        flex: 1;
+    .navbar-top {
+        padding: 5px 0;
+    }
+
+    .centered-logo {
+        font-size: 20px;
+    }
+
+    .navbar-bottom {
+        flex-direction: column;
+        padding: 5px 15px;
+        gap: 10px;
     }
 
     .search-bar {
-        order: 3;
         max-width: 100%;
-        margin: 8px 0 0;
+        margin: 0;
         width: 100%;
+    }
+
+    .nav-links {
+        width: 100%;
+        justify-content: space-around;
+        gap: 5px;
     }
 
     .search-bar input {
