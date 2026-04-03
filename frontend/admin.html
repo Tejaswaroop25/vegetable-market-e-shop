@@ -156,17 +156,21 @@
     <!-- Admin Content -->
     <div id="adminDashboard" class="dashboard-container">
         <nav class="navbar" style="position:static; margin-bottom: 30px;">
-            <div class="logo">
-                <i class="fa-solid fa-chart-line"></i> Admin Dashboard
-            </div>
-            <div class="nav-links">
-                <a href="index.html" style="color:var(--text-muted)">Back to Store</a>
-                <a href="#" onclick="location.reload()" style="color:var(--danger-color)">Logout</a>
+            <div class="navbar-top">
+                <div class="logo">
+                    <i class="fa-solid fa-chart-line"></i> Admin Dashboard
+                </div>
                 <div class="theme-switch-wrapper">
                     <label class="theme-switch" for="checkbox-admin">
                         <input type="checkbox" id="checkbox-admin" />
                         <div class="slider"></div>
                     </label>
+                </div>
+            </div>
+            <div class="navbar-bottom">
+                <div class="nav-links">
+                    <a href="index.html" style="color:var(--text-muted)">Back to Store</a>
+                    <a href="#" onclick="location.reload()" style="color:var(--danger-color)">Logout</a>
                 </div>
             </div>
         </nav>

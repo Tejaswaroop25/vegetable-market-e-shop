@@ -61,16 +61,25 @@ a {
     z-index: 1000;
     display: flex;
     flex-direction: column;
-    padding: 10px 0;
+    padding: 0;
 }
 
 .navbar-top {
     width: 100%;
     display: flex;
     justify-content: center;
-    padding: 10px 0;
+    align-items: center;
+    padding: 15px 20px;
     border-bottom: 1px solid var(--border-color);
-    margin-bottom: 5px;
+    position: relative;
+}
+
+.navbar-top .theme-switch-wrapper {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
 }
 
 .centered-logo {
@@ -150,7 +159,6 @@ a {
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-left: 10px;
 }
 
 .theme-switch {
