@@ -718,3 +718,130 @@ footer {
 .nav-links a.btn-login, .nav-links a.btn-logout, .nav-links a.btn-admin {
     color: white !important;
 }
+/* --- Media Queries for Mobile Responsiveness --- */
+@media (max-width: 992px) {
+    .navbar {
+        padding: 15px 20px;
+    }
+    
+    .search-bar {
+        margin: 0 10px;
+    }
+    
+    .nav-links {
+        gap: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-wrap: wrap;
+        padding: 10px 15px;
+    }
+    
+    .logo {
+        font-size: 20px;
+    }
+    
+    .search-bar {
+        order: 3;
+        max-width: 100%;
+        margin: 10px 0 0;
+        width: 100%;
+    }
+    
+    .nav-links {
+        gap: 10px;
+    }
+    
+    .nav-links a:not(.cart-icon-nav, .btn-login, .btn-logout, .btn-admin) {
+        display: none; /* Hide text links on mobile */
+    }
+
+    .hero {
+        height: 300px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .category-filter {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 5px;
+        white-space: nowrap;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 15px;
+    }
+
+    .product-img-wrapper {
+        height: 140px;
+    }
+
+    .product-title {
+        font-size: 16px;
+    }
+
+    .cart-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .floating-cart {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .btn-login, .btn-logout, .btn-admin {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-grid {
+        grid-template-columns: 1fr 1fr; /* Force 2 columns on very small screens */
+    }
+    
+    .product-img-wrapper {
+        height: 120px;
+    }
+    
+    .product-info {
+        padding: 10px;
+    }
+    
+    .product-title {
+        font-size: 14px;
+    }
+    
+    .product-price {
+        font-size: 16px;
+    }
+    
+    .add-to-cart-btn {
+        width: 30px;
+        height: 30px;
+    }
+}
