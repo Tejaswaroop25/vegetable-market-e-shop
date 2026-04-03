@@ -125,9 +125,10 @@ function renderProducts(products) {
         return;
     }
 
-    products.forEach(veg => {
+    products.forEach((veg, index) => {
         const card = document.createElement('div');
         card.className = 'product-card';
+        card.style.animationDelay = `${index * 0.05}s`;
         card.innerHTML = `
             <div class="product-img-wrapper">
                 <img src="${veg.image}" alt="${veg.name}">
