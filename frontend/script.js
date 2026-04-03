@@ -4,8 +4,8 @@ let allVegetables = [];
 
 // Auto-detect API base URL: works with both Live Server and Express backend
 // Auto-detect API base URL: works with both local dev and production on Render
-const API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') 
-    ? (window.location.port === '5000' ? '' : 'http://localhost:5000') 
+const API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+    ? (window.location.port === '5000' ? '' : 'http://localhost:5000')
     : (window.location.protocol === 'file:' ? 'http://localhost:5000' : '');
 
 // Store Location Coordinates (Ramesh vegetable market)
@@ -18,18 +18,18 @@ document.addEventListener('DOMContentLoaded', () => {
     initTheme();
     checkAuthState();
     updateCartCount();
-    
+
     // Page specific logic
     if (document.getElementById('product-grid')) {
         fetchVegetables();
         setupFilters();
         setupSearch();
     }
-    
+
     if (document.getElementById('cartItemsContainer')) {
         renderCart();
     }
-    
+
     if (document.getElementById('checkoutForm')) {
         renderCheckout();
         initializeAddressMap();
@@ -48,15 +48,15 @@ function initTheme() {
         }
     }
 
-    if(toggleSwitch) {
-        toggleSwitch.addEventListener('change', function(e) {
+    if (toggleSwitch) {
+        toggleSwitch.addEventListener('change', function (e) {
             if (e.target.checked) {
                 document.documentElement.setAttribute('data-theme', 'dark');
                 localStorage.setItem('theme', 'dark');
             } else {
                 document.documentElement.setAttribute('data-theme', 'light');
                 localStorage.setItem('theme', 'light');
-            }    
+            }
         });
     }
 }
@@ -66,12 +66,12 @@ function checkAuthState() {
     const userAuth = JSON.parse(localStorage.getItem('userAuth'));
     const loginBtn = document.getElementById('loginBtnNav');
     const myOrdersLink = document.getElementById('myOrdersLinkNav');
-    
+
     // Default style
     if (loginBtn) {
         loginBtn.classList.add('btn-login');
     }
-    
+
     if (userAuth && userAuth.loggedIn && loginBtn) {
         loginBtn.innerHTML = `<i class="fa-solid fa-right-from-bracket"></i> Logout (${userAuth.name})`;
         loginBtn.classList.remove('btn-login');
@@ -83,7 +83,7 @@ function checkAuthState() {
             window.location.href = 'index.html'; // Explicit redirect instead of just reload
         };
 
-        if(myOrdersLink) {
+        if (myOrdersLink) {
             myOrdersLink.style.display = 'inline-block';
         }
     }
@@ -94,7 +94,7 @@ function checkAuthState() {
         // Strict admin email check
         const isAdmin = userAuth && userAuth.loggedIn && userAuth.email === 'tejaswaroop367@gmail.com';
         adminBtn.style.display = isAdmin ? 'inline-block' : 'none';
-        
+
         // Ensure it points to admin dashboard which now has both panels
         adminBtn.href = 'admin.html';
         adminBtn.innerHTML = '<i class="fa-solid fa-user-shield"></i> Admin Panel';
@@ -106,7 +106,7 @@ async function fetchVegetables() {
     try {
         const response = await fetch(`${API_BASE}/api/vegetables`);
         if (!response.ok) throw new Error('Failed to fetch vegetables');
-        
+
         allVegetables = await response.json();
         renderProducts(allVegetables);
     } catch (error) {
@@ -119,7 +119,7 @@ async function fetchVegetables() {
 function renderProducts(products) {
     const grid = document.getElementById('product-grid');
     grid.innerHTML = '';
-    
+
     if (products.length === 0) {
         grid.innerHTML = '<p>No products found.</p>';
         return;
@@ -154,7 +154,7 @@ function setupFilters() {
         btn.addEventListener('click', (e) => {
             filterBtns.forEach(b => b.classList.remove('active'));
             e.target.classList.add('active');
-            
+
             const category = e.target.getAttribute('data-filter');
             if (category === 'all') {
                 renderProducts(allVegetables);
@@ -168,7 +168,7 @@ function setupFilters() {
 
 function setupSearch() {
     const searchInput = document.getElementById('searchInput');
-    if(searchInput) {
+    if (searchInput) {
         searchInput.addEventListener('input', (e) => {
             const term = e.target.value.toLowerCase();
             const filtered = allVegetables.filter(v => v.name.toLowerCase().includes(term));
@@ -185,14 +185,14 @@ function addToCart(id, name, price, image) {
     } else {
         cart.push({ id, name, pricePerKg: price, quantity: 1, image });
     }
-    
+
     saveCart();
     updateCartCount();
     showToast(`${name} added to cart!`);
-    
+
     // Animate cart icon
     const floatingCart = document.querySelector('.floating-cart');
-    if(floatingCart) {
+    if (floatingCart) {
         floatingCart.style.animation = 'none';
         setTimeout(() => floatingCart.style.animation = 'cartPop 0.3s ease', 10);
     }
@@ -213,7 +213,7 @@ function renderCart() {
     const container = document.getElementById('cartItemsContainer');
     const summaryTotal = document.getElementById('summaryItemsTotal');
     const grandTotal = document.getElementById('summaryGrandTotal');
-    
+
     if (cart.length === 0) {
         container.innerHTML = '<p>Your cart is empty. <a href="index.html" style="color:var(--primary-color);">Start shopping</a></p>';
         summaryTotal.textContent = '₹0';
@@ -227,7 +227,7 @@ function renderCart() {
     cart.forEach((item, index) => {
         const itemTotal = item.quantity * item.pricePerKg;
         total += itemTotal;
-        
+
         const itemEl = document.createElement('div');
         itemEl.className = 'cart-item';
         itemEl.innerHTML = `
@@ -273,7 +273,7 @@ function goToCheckout() {
         showToast('Cart is empty!', 'danger');
         return;
     }
-    
+
     const userAuth = JSON.parse(localStorage.getItem('userAuth'));
     if (!userAuth || !userAuth.loggedIn) {
         showToast('Please Login/Signup to proceed with your order!', 'danger');
@@ -295,11 +295,11 @@ function renderCheckout() {
     }
 
     const subtotal = cart.reduce((sum, item) => sum + (item.quantity * item.pricePerKg), 0);
-    if(subtotal === 0) {
+    if (subtotal === 0) {
         window.location.href = 'index.html';
         return;
     }
-    
+
     // Initial calculation if marker is already set
     if (marker) {
         const pos = marker.getLatLng();
@@ -312,25 +312,25 @@ function renderCheckout() {
 function calculateDelivery(lat, lng) {
     const dist = getDistance(STORE_COORDS.lat, STORE_COORDS.lng, lat, lng);
     currentDeliveryDistance = dist;
-    
+
     // Rules: < 2km free, else 15 per km
     if (dist < 2) {
         deliveryCharges = 0;
     } else {
         deliveryCharges = Math.round(dist * 15);
     }
-    
+
     const subtotal = cart.reduce((sum, item) => sum + (item.quantity * item.pricePerKg), 0);
     updateCheckoutDisplay(subtotal, dist, deliveryCharges);
 }
 
 function updateCheckoutDisplay(subtotal, distance, charges) {
     const total = subtotal + charges;
-    
+
     // Update UI elements
     const checkoutTotal = document.getElementById('checkoutTotal');
     if (checkoutTotal) checkoutTotal.textContent = `₹${total}`;
-    
+
     // Update summary details if they exist
     const summaryDetails = document.querySelector('.summary-details');
     if (summaryDetails) {
@@ -353,11 +353,11 @@ function updateCheckoutDisplay(subtotal, distance, charges) {
             </div>
         `;
     }
-    
+
     // Update QR Amount if visible
     const qrAmountDisplay = document.getElementById('qrAmountDisplay');
     if (qrAmountDisplay) qrAmountDisplay.textContent = total;
-    
+
     const qrImg = document.getElementById('qrImage');
     if (qrImg && qrImg.src.includes('data=upi://pay')) {
         qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=9989322515@ptaxis%26pn=FreshVeggies%26am=${total}`;
@@ -369,9 +369,9 @@ function getDistance(lat1, lon1, lat2, lon2) {
     const R = 6371; // Radius of the earth in km
     const dLat = deg2rad(lat2 - lat1);
     const dLon = deg2rad(lon2 - lon1);
-    const a = 
+    const a =
         Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-        Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+        Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
         Math.sin(dLon / 2) * Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     const d = R * c; // Distance in km
@@ -388,7 +388,7 @@ function togglePaymentQR() {
     const qrImg = document.getElementById('qrImage');
     const subtotal = cart.reduce((sum, item) => sum + (item.quantity * item.pricePerKg), 0);
     const total = subtotal + deliveryCharges;
-    
+
     if (paymentMethod === 'Online Payment') {
         qrSection.style.display = 'block';
         document.getElementById('qrAmountDisplay').textContent = total;
@@ -413,7 +413,7 @@ async function placeOrder() {
     const transactionId = document.getElementById('transactionId')?.value || '';
     const subtotal = cart.reduce((sum, item) => sum + (item.quantity * item.pricePerKg), 0);
     const totalPrice = subtotal + deliveryCharges;
-    
+
     const formattedItems = cart.map(item => ({
         vegetableId: item.id,
         name: item.name,
@@ -447,11 +447,11 @@ async function placeOrder() {
                 transactionId // Note: Added to backend model if needed, otherwise just in logs
             })
         });
-        
-        if(!response.ok) {
+
+        if (!response.ok) {
             console.error('Order creation failed on server');
         }
-    } catch(err) {
+    } catch (err) {
         console.error(err);
     }
 
@@ -460,7 +460,7 @@ async function placeOrder() {
     waMessage += `*Payment: ${paymentMethod}* ${paymentMethod === 'Online Payment' ? '(Paid via QR)' : ''}\n`;
     if (transactionId) waMessage += `ID/UTR: ${transactionId}\n`;
     waMessage += `\n`;
-    
+
     formattedItems.forEach(item => {
         waMessage += `🛒 ${item.name} - ${item.quantity}kg - ₹${item.totalPrice}\n`;
     });
@@ -478,7 +478,7 @@ async function placeOrder() {
     // 3. Clear cart & redirect
     cart = [];
     saveCart();
-    
+
     window.location.href = waURL;
 }
 
@@ -490,7 +490,7 @@ function showToast(message, type = 'success') {
     const toast = document.createElement('div');
     toast.className = 'toast';
     toast.innerHTML = `<i class="fa-solid fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}" style="color: ${type === 'success' ? 'var(--primary-color)' : 'var(--danger-color)'};"></i> ${message}`;
-    
+
     container.appendChild(toast);
 
     setTimeout(() => {
@@ -573,10 +573,10 @@ async function fetchSuggestions(query) {
     try {
         const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&countrycodes=in&limit=5`);
         const data = await response.json();
-        
+
         const suggestionsDiv = document.getElementById('addressSuggestions');
         suggestionsDiv.innerHTML = '';
-        
+
         if (data.length > 0) {
             suggestionsDiv.style.display = 'block';
             data.forEach(item => {
