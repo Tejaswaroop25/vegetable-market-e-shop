@@ -91,43 +91,41 @@ a {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 5px 40px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    align-items: center;
-}
-
-.nav-spacer, .nav-left-links {
-    grid-column: 1;
-}
-
-.nav-left-links {
+    padding: 10px 40px;
     display: flex;
-    gap: 20px;
+    justify-content: space-between;
     align-items: center;
-    font-weight: 500;
+    gap: 30px;
 }
+
+.search-bar {
+    flex: 2;
+    display: flex;
+    max-width: 500px;
+    position: relative;
+}
+
 
 
 .logo {
     font-size: 24px;
     font-weight: 700;
-    color: var(--primary-color) !important;
+    color: var(--primary-color);
     display: flex;
     align-items: center;
     gap: 8px;
-    text-decoration: none;
 }
 
-
-.search-bar {
+.nav-links {
+    flex: 3;
     display: flex;
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
-    position: relative;
-    grid-column: 2;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    font-weight: 600;
+    flex-wrap: nowrap;
 }
+
 
 
 .search-bar input {
@@ -890,33 +888,13 @@ footer {
         display: flex;
         flex-direction: column;
         padding: 5px 15px;
-        gap: 15px;
+        gap: 10px;
     }
 
-    .nav-spacer {
+    .nav-spacer,
+    .nav-left-links {
         display: none;
     }
-
-    .nav-left-links {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        gap: 15px;
-    }
-
-    .nav-links {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        gap: 12px;
-        flex-wrap: wrap; /* To prevent overflow if text is long */
-    }
-
-    .nav-links a {
-        font-size: 14px; /* Slightly smaller for mobile side-by-side */
-    }
-
-
 
 
 
@@ -927,9 +905,16 @@ footer {
     }
 
     .nav-links {
+        display: flex;
+        justify-content: center;
         width: 100%;
-        justify-content: space-around;
-        gap: 5px;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .nav-links a {
+        font-size: 13px;
+        white-space: nowrap;
     }
 
     .search-bar input {
@@ -937,13 +922,6 @@ footer {
         font-size: 14px;
     }
 
-    .nav-links {
-        gap: 8px;
-    }
-
-    .nav-links a:not(.cart-icon-nav, .btn-login, .btn-logout, .btn-admin) {
-        display: none;
-    }
 
     .hero {
         height: 280px;
@@ -1047,7 +1025,7 @@ footer {
     opacity: 0;
     transform: translateY(20px) scale(0.97);
     filter: blur(8px);
-    transition: 
+    transition:
         opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
         transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
         filter 0.7s ease;
