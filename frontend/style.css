@@ -884,38 +884,62 @@ footer {
         font-size: 20px;
     }
 
+    .navbar-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 15px;
+        position: relative;
+    }
+
     .navbar-bottom {
         display: flex;
         flex-direction: column;
         padding: 5px 15px;
-        gap: 10px;
-    }
-
-    .nav-spacer,
-    .nav-left-links {
-        display: none;
-    }
-
-
-
-    .search-bar {
-        max-width: 100%;
-        margin: 0;
-        width: 100%;
+        gap: 8px;
     }
 
     .nav-links {
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         width: 100%;
-        gap: 10px;
-        flex-wrap: wrap;
+        gap: 12px;
+        overflow-x: auto;
+        padding: 5px 0;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .nav-links::-webkit-scrollbar {
+        display: none;
     }
 
     .nav-links a {
         font-size: 13px;
         white-space: nowrap;
+        padding: 7px 14px;
+        background: var(--border-color);
+        border-radius: 20px;
+        color: var(--text-main);
     }
+
+    .cart-icon-nav {
+        position: absolute;
+        right: 65px; /* Beside theme toggle */
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 18px;
+    }
+
+    .theme-switch-wrapper {
+        margin-left: auto;
+    }
+
+    .search-bar {
+        width: 100%;
+        margin: 0;
+    }
+
 
     .search-bar input {
         padding: 8px 15px;
