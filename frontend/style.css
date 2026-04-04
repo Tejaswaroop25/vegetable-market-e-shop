@@ -97,8 +97,15 @@ a {
     align-items: center;
 }
 
-.nav-spacer {
-    display: block;
+.nav-spacer, .nav-left-links {
+    grid-column: 1;
+}
+
+.nav-left-links {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    font-weight: 500;
 }
 
 
@@ -884,9 +891,10 @@ footer {
         gap: 10px;
     }
 
-    .nav-spacer {
+    .nav-spacer, .nav-left-links {
         display: none;
     }
+
 
 
     .search-bar {
