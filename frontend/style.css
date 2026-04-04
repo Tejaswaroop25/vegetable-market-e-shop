@@ -91,21 +91,11 @@ a {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 10px 40px;
+    padding: 5px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 30px;
 }
-
-.search-bar {
-    flex: 2;
-    display: flex;
-    max-width: 500px;
-    position: relative;
-}
-
-
 
 .logo {
     font-size: 24px;
@@ -116,17 +106,13 @@ a {
     gap: 8px;
 }
 
-.nav-links {
-    flex: 3;
+.search-bar {
     display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 12px;
-    font-weight: 600;
-    flex-wrap: nowrap;
+    flex: 1;
+    max-width: 500px;
+    margin: 0 20px;
+    position: relative;
 }
-
-
 
 .search-bar input {
     width: 100%;
@@ -167,10 +153,7 @@ a {
     align-items: center;
     gap: 20px;
     font-weight: 500;
-    grid-column: 3;
-    justify-self: end;
 }
-
 
 .theme-switch-wrapper {
     display: flex;
@@ -884,68 +867,36 @@ footer {
         font-size: 20px;
     }
 
-    .navbar-top {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 8px 15px;
-        position: relative;
-    }
-
     .navbar-bottom {
-        display: flex;
         flex-direction: column;
         padding: 5px 15px;
-        gap: 8px;
-    }
-
-    .nav-links {
-        display: flex;
-        justify-content: flex-start;
-        width: 100%;
-        gap: 12px;
-        overflow-x: auto;
-        padding: 5px 0;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-    }
-
-    .nav-links::-webkit-scrollbar {
-        display: none;
-    }
-
-    .nav-links a {
-        font-size: 13px;
-        white-space: nowrap;
-        padding: 7px 14px;
-        background: var(--border-color);
-        border-radius: 20px;
-        color: var(--text-main);
-    }
-
-    .cart-icon-nav {
-        position: absolute;
-        right: 65px; /* Beside theme toggle */
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 18px;
-    }
-
-    .theme-switch-wrapper {
-        margin-left: auto;
+        gap: 10px;
     }
 
     .search-bar {
-        width: 100%;
+        max-width: 100%;
         margin: 0;
+        width: 100%;
     }
 
+    .nav-links {
+        width: 100%;
+        justify-content: space-around;
+        gap: 5px;
+    }
 
     .search-bar input {
         padding: 8px 15px;
         font-size: 14px;
     }
 
+    .nav-links {
+        gap: 8px;
+    }
+
+    .nav-links a:not(.cart-icon-nav, .btn-login, .btn-logout, .btn-admin) {
+        display: none;
+    }
 
     .hero {
         height: 280px;
@@ -1049,7 +1000,7 @@ footer {
     opacity: 0;
     transform: translateY(20px) scale(0.97);
     filter: blur(8px);
-    transition:
+    transition: 
         opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
         transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
         filter 0.7s ease;

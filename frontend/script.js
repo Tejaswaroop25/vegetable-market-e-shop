@@ -87,9 +87,7 @@ function checkAuthState() {
     }
 
     if (userAuth && userAuth.loggedIn && loginBtn) {
-        const isMobile = window.innerWidth < 600;
-        loginBtn.innerHTML = `<i class="fa-solid fa-right-from-bracket"></i> ${isMobile ? 'Logout' : 'Logout (' + userAuth.name + ')'}`;
-
+        loginBtn.innerHTML = `<i class="fa-solid fa-right-from-bracket"></i> Logout (${userAuth.name})`;
         loginBtn.classList.remove('btn-login');
         loginBtn.classList.add('btn-logout');
         loginBtn.href = "#";
