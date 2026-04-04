@@ -904,6 +904,19 @@ footer {
         gap: 15px;
     }
 
+    .nav-links {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        gap: 12px;
+        flex-wrap: wrap; /* To prevent overflow if text is long */
+    }
+
+    .nav-links a {
+        font-size: 14px; /* Slightly smaller for mobile side-by-side */
+    }
+
+
 
 
 
