@@ -209,7 +209,8 @@
             <div class="navbar-bottom">
                 <div class="nav-links">
                     <a href="index.html" style="color:var(--text-muted)">Back to Store</a>
-                    <a href="#" onclick="location.reload()" style="color:var(--danger-color)">Logout</a>
+                    <a href="#" onclick="if(confirm('Are you sure you want to logout?')) location.reload()" style="color:var(--danger-color)">Logout</a>
+
                 </div>
             </div>
         </nav>

@@ -79,9 +79,12 @@ function checkAuthState() {
         loginBtn.href = "#";
         loginBtn.onclick = (e) => {
             e.preventDefault();
-            localStorage.removeItem('userAuth');
-            window.location.href = 'index.html'; // Explicit redirect instead of just reload
+            if (confirm('Are you sure you want to log out?')) {
+                localStorage.removeItem('userAuth');
+                window.location.href = 'index.html';
+            }
         };
+
 
         if (myOrdersLink) {
             myOrdersLink.style.display = 'inline-block';
