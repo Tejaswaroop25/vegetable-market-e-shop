@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,13 +11,17 @@
     <style>
         .admin-login-overlay {
             position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             background: var(--bg-color);
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 10000;
         }
+
         .login-box {
             background: var(--card-bg);
             padding: 40px;
@@ -26,6 +31,7 @@
             width: 100%;
             max-width: 400px;
         }
+
         .login-box input {
             width: 100%;
             padding: 12px;
@@ -34,6 +40,7 @@
             border-radius: 8px;
             font-size: 16px;
         }
+
         .login-box button {
             width: 100%;
             padding: 12px;
@@ -44,17 +51,20 @@
             font-size: 16px;
             cursor: pointer;
         }
+
         .dashboard-container {
-            display: none; /* Shown after login */
+            display: none;
+            /* Shown after login */
             padding: 20px 0;
         }
-        
+
         .stat-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
             margin-bottom: 30px;
         }
+
         .stat-card {
             background: var(--card-bg);
             padding: 25px;
@@ -64,13 +74,23 @@
             align-items: center;
             gap: 20px;
         }
+
         .stat-icon {
             font-size: 40px;
             color: var(--primary-color);
         }
-        .stat-info h3 { font-size: 14px; color: var(--text-muted); }
-        .stat-info .stat-value { font-size: 28px; font-weight: 700; color: var(--text-main); }
-        
+
+        .stat-info h3 {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .stat-info .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
@@ -80,23 +100,31 @@
             overflow: hidden;
             margin-bottom: 40px;
         }
-        th, td {
+
+        th,
+        td {
             padding: 15px;
             text-align: left;
             border-bottom: 1px solid var(--border-color);
         }
+
         th {
             background: var(--primary-light);
             color: white;
             font-weight: 600;
         }
-        tr:last-child td { border-bottom: none; }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
         .rate-input {
             width: 80px;
             padding: 5px;
             border: 1px solid var(--border-color);
             border-radius: 4px;
         }
+
         .update-btn {
             background: var(--primary-color);
             color: white;
@@ -105,6 +133,7 @@
             border-radius: 4px;
             cursor: pointer;
         }
+
         .order-items-list {
             font-size: 13px;
             color: var(--text-muted);
@@ -116,12 +145,21 @@
             color: var(--primary-color) !important;
             border-bottom: 3px solid var(--primary-color) !important;
         }
+
         .tab-panel {
             animation: fadeIn 0.4s ease;
         }
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
     <script>
@@ -141,6 +179,7 @@
         }
     </script>
 </head>
+
 <body>
 
     <!-- Login Overlay -->
@@ -177,13 +216,21 @@
 
         <main class="container">
             <!-- Tab Navigation -->
-            <div class="tabs-container" style="display: flex; gap: 10px; margin-bottom: 30px; border-bottom: 2px solid var(--border-color); padding-bottom: 10px;">
-                <button id="tab-vegetables" class="tab-btn active" onclick="switchTab('vegetables')" style="padding: 10px 20px; border: none; background: none; font-size: 16px; font-weight: 600; cursor: pointer; color: var(--text-muted); border-bottom: 3px solid transparent;">
+            <div class="tabs-container"
+                style="display: flex; gap: 10px; margin-bottom: 30px; border-bottom: 2px solid var(--border-color); padding-bottom: 10px;">
+                <button id="tab-vegetables" class="tab-btn active" onclick="switchTab('vegetables')"
+                    style="padding: 10px 20px; border: none; background: none; font-size: 16px; font-weight: 600; cursor: pointer; color: var(--text-muted); border-bottom: 3px solid transparent;">
                     <i class="fa-solid fa-carrot"></i> Vegetables
                 </button>
-                <button id="tab-orders" class="tab-btn" onclick="switchTab('orders')" style="padding: 10px 20px; border: none; background: none; font-size: 16px; font-weight: 600; cursor: pointer; color: var(--text-muted); border-bottom: 3px solid transparent;">
+                <button id="tab-orders" class="tab-btn" onclick="switchTab('orders')"
+                    style="padding: 10px 20px; border: none; background: none; font-size: 16px; font-weight: 600; cursor: pointer; color: var(--text-muted); border-bottom: 3px solid transparent;">
                     <i class="fa-solid fa-truck-fast"></i> Orders
                 </button>
+                <button id="tab-logins" class="tab-btn" onclick="switchTab('logins')"
+                    style="padding: 10px 20px; border: none; background: none; font-size: 16px; font-weight: 600; cursor: pointer; color: var(--text-muted); border-bottom: 3px solid transparent;">
+                    <i class="fa-solid fa-user-clock"></i> User Logins
+                </button>
+
             </div>
 
             <!-- Vegetables Panel -->
@@ -191,14 +238,17 @@
                 <!-- Add New Vegetable -->
                 <h2 class="page-header">Add New Vegetable</h2>
                 <div class="stat-card" style="display:block; margin-bottom: 30px;">
-                    <form id="addVegetableForm" onsubmit="addVegetable(event)" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:15px; padding:10px;">
+                    <form id="addVegetableForm" onsubmit="addVegetable(event)"
+                        style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:15px; padding:10px;">
                         <div>
                             <label>Name</label>
-                            <input type="text" id="vegName" placeholder="Tomato (Tamata)" required style="width:100%; padding:8px; border:1px solid var(--border-color); border-radius:4px;">
+                            <input type="text" id="vegName" placeholder="Tomato (Tamata)" required
+                                style="width:100%; padding:8px; border:1px solid var(--border-color); border-radius:4px;">
                         </div>
                         <div>
                             <label>Category</label>
-                            <select id="vegCategory" required style="width:100%; padding:8px; border:1px solid var(--border-color); border-radius:4px;">
+                            <select id="vegCategory" required
+                                style="width:100%; padding:8px; border:1px solid var(--border-color); border-radius:4px;">
                                 <option value="Vegetable">Vegetable</option>
                                 <option value="Leafy">Leafy</option>
                                 <option value="Salad">Salad</option>
@@ -208,15 +258,18 @@
                         </div>
                         <div>
                             <label>Price (₹/kg)</label>
-                            <input type="number" id="vegPrice" placeholder="40" required style="width:100%; padding:8px; border:1px solid var(--border-color); border-radius:4px;">
+                            <input type="number" id="vegPrice" placeholder="40" required
+                                style="width:100%; padding:8px; border:1px solid var(--border-color); border-radius:4px;">
                         </div>
                         <div>
                             <label>Image URL</label>
-                            <input type="url" id="vegImage" placeholder="https://..." required style="width:100%; padding:8px; border:1px solid var(--border-color); border-radius:4px;">
+                            <input type="url" id="vegImage" placeholder="https://..." required
+                                style="width:100%; padding:8px; border:1px solid var(--border-color); border-radius:4px;">
                         </div>
                         <div style="grid-column: 1 / -1;">
                             <label>Description</label>
-                            <input type="text" id="vegDescription" placeholder="Fresh Farm Tomatoes" required style="width:100%; padding:8px; border:1px solid var(--border-color); border-radius:4px;">
+                            <input type="text" id="vegDescription" placeholder="Fresh Farm Tomatoes" required
+                                style="width:100%; padding:8px; border:1px solid var(--border-color); border-radius:4px;">
                         </div>
                         <div style="grid-column: 1 / -1; display: flex; justify-content: flex-end;">
                             <button type="submit" class="update-btn" style="padding:10px 25px;">Add Vegetable</button>
@@ -236,7 +289,9 @@
                         </tr>
                     </thead>
                     <tbody id="adminVegetablesTable">
-                        <tr><td colspan="4">Loading vegetables...</td></tr>
+                        <tr>
+                            <td colspan="4">Loading vegetables...</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -259,7 +314,15 @@
                             <div class="stat-value" id="totalOrders">0</div>
                         </div>
                     </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+                        <div class="stat-info">
+                            <h3>USER LOGINS</h3>
+                            <div class="stat-value" id="totalLogins">0</div>
+                        </div>
+                    </div>
                 </div>
+
 
                 <!-- Orders Table -->
                 <h2 class="page-header">Recent Orders</h2>
@@ -276,10 +339,33 @@
                         </tr>
                     </thead>
                     <tbody id="adminOrdersTable">
-                        <tr><td colspan="7">Loading orders...</td></tr>
+                        <tr>
+                            <td colspan="7">Loading orders...</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
+
+            <!-- Logins Panel -->
+            <div id="panel-logins" class="tab-panel" style="display: none;">
+                <h2 class="page-header">Recent User Logins</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>DateTime</th>
+                            <th>User Name</th>
+                            <th>Email Address</th>
+                            <th>Profile</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminLoginsTable">
+                        <tr>
+                            <td colspan="4">Loading logins...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
         </main>
     </div>
 
@@ -288,8 +374,8 @@
     <script>
         // Auto-detect API base URL: works with both Live Server and Express backend
         // Auto-detect API base URL: works with both local dev and production on Render
-        const API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') 
-            ? (window.location.port === '5000' ? '' : 'http://localhost:5000') 
+        const API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+            ? (window.location.port === '5000' ? '' : 'http://localhost:5000')
             : (window.location.protocol === 'file:' ? 'http://localhost:5000' : '');
 
         // Use toast from script.js logic manually here
@@ -328,7 +414,9 @@
         async function loadAdminData() {
             loadVegetables();
             loadOrders();
+            loadLogins();
         }
+
 
         // Load & Update Vegetables
         async function loadVegetables() {
@@ -337,7 +425,7 @@
                 const veggies = await res.json();
                 const tbody = document.getElementById('adminVegetablesTable');
                 tbody.innerHTML = '';
-                
+
                 veggies.forEach(veg => {
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
@@ -371,7 +459,7 @@
                 } else {
                     showToast(`Failed to update ${name}`, 'danger');
                 }
-            } catch(err) {
+            } catch (err) {
                 showToast(`Error connecting to server`, 'danger');
             }
         }
@@ -399,7 +487,7 @@
                 } else {
                     showToast(`Failed to add vegetable`, 'danger');
                 }
-            } catch(err) {
+            } catch (err) {
                 showToast(`Error connecting to server`, 'danger');
             }
         }
@@ -416,7 +504,7 @@
                 } else {
                     showToast(`Failed to delete ${name}`, 'danger');
                 }
-            } catch(err) {
+            } catch (err) {
                 showToast(`Error connecting to server`, 'danger');
             }
         }
@@ -426,7 +514,7 @@
             try {
                 const res = await fetch(`${API_BASE}/api/orders`);
                 const orders = await res.json();
-                
+
                 // Stats
                 document.getElementById('totalOrders').textContent = orders.length;
                 const revenue = orders.reduce((sum, order) => sum + order.totalPrice, 0);
@@ -435,7 +523,7 @@
                 // Table
                 const tbody = document.getElementById('adminOrdersTable');
                 tbody.innerHTML = '';
-                
+
                 if (orders.length === 0) {
                     tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;">No orders received yet.</td></tr>';
                     return;
@@ -444,7 +532,7 @@
                 orders.forEach(order => {
                     const date = new Date(order.createdAt).toLocaleString('en-IN');
                     const itemsHtml = order.items.map(i => `${i.name} (${i.quantity}kg)`).join(', ');
-                    
+
                     const tr = document.createElement('tr');
                     const payStatusColor = order.paymentStatus === 'Verified' ? '#4CAF50' : (order.paymentStatus === 'Rejected' ? '#f44336' : '#ff9800');
                     const showVerifyBtn = order.paymentMethod === 'Online Payment' && order.paymentStatus === 'Pending';
@@ -499,7 +587,7 @@
                 } else {
                     showToast(`Failed to update payment`, 'danger');
                 }
-            } catch(err) {
+            } catch (err) {
                 showToast(`Error connecting to server`, 'danger');
             }
         }
@@ -517,10 +605,50 @@
                 } else {
                     showToast(`Failed to update status`, 'danger');
                 }
-            } catch(err) {
+            } catch (err) {
                 showToast(`Error connecting to server`, 'danger');
             }
         }
+
+        async function loadLogins() {
+            try {
+                const res = await fetch(`${API_BASE}/api/users/logins`);
+                const logins = await res.json();
+                
+                // Update stat
+                document.getElementById('totalLogins').textContent = logins.length;
+
+                const tbody = document.getElementById('adminLoginsTable');
+
+                tbody.innerHTML = '';
+
+                if (logins.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;">No logins recorded yet.</td></tr>';
+                    return;
+                }
+
+                logins.forEach(login => {
+                    const date = new Date(login.createdAt).toLocaleString('en-IN');
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                <td>${date}</td>
+                <td>
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <img src="${login.picture || 'https://via.placeholder.com/30'}" style="width:30px; height:30px; border-radius:50%; object-fit:cover;">
+                        <strong>${login.name}</strong>
+                    </div>
+                </td>
+                <td>${login.email}</td>
+                <td><small style="color:var(--text-muted)">ID: ${login.userId}</small></td>
+            `;
+                    tbody.appendChild(tr);
+                });
+            } catch (err) {
+                console.error('Error loading logins', err);
+            }
+        }
+
     </script>
 </body>
+
 </html>
