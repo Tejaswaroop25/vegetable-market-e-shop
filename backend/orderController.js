@@ -91,10 +91,28 @@ const updatePaymentStatus = async (req, res) => {
     }
 };
 
+// @desc    Delete order
+// @route   DELETE /api/orders/:id
+const deleteOrder = async (req, res) => {
+    try {
+        const order = await Order.findByIdAndDelete(req.params.id);
+        if (order) {
+            res.json({ message: 'Order removed' });
+        } else {
+            res.status(404).json({ message: 'Order not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: 'Server Error' });
+    }
+};
+
 module.exports = {
+
     createOrder,
     getOrders,
     getUserOrders,
     updateOrderStatus,
-    updatePaymentStatus
+    updatePaymentStatus,
+    deleteOrder
 };
+

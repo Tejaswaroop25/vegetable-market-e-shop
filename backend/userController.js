@@ -45,8 +45,35 @@ const getAllLogins = async (req, res) => {
     }
 };
 
+// @desc    Delete single login record
+// @route   DELETE /api/users/logins/:id
+const deleteLogin = async (req, res) => {
+    try {
+        await Login.findByIdAndDelete(req.params.id);
+        res.status(200).json({ message: 'Login record deleted' });
+    } catch (error) {
+        console.error('Error deleting login:', error);
+        res.status(500).json({ message: 'Server Error' });
+    }
+};
+
+// @desc    Clear all login records
+// @route   DELETE /api/users/logins
+const clearAllLogins = async (req, res) => {
+    try {
+        await Login.deleteMany({});
+        res.status(200).json({ message: 'All login records cleared' });
+    } catch (error) {
+        console.error('Error clearing logins:', error);
+        res.status(500).json({ message: 'Server Error' });
+    }
+};
+
 module.exports = {
     syncUser,
-    getAllLogins
+    getAllLogins,
+    deleteLogin,
+    clearAllLogins
 };
+
 
