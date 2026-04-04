@@ -35,8 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
         initializeAddressMap();
     }
 
-    // Scroll Reveal Animation
-    const observer = new IntersectionObserver((entries) => {
+    // Scroll Reveal Animation Global Observer
+    window.observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('active');
@@ -44,8 +44,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    // Initial Observation for static elements
+    document.querySelectorAll('.reveal').forEach(el => window.observer.observe(el));
 });
+
 
 
 // ---------- THEME LOGIC ----------
@@ -142,8 +144,8 @@ function renderProducts(products) {
 
     products.forEach((veg, index) => {
         const card = document.createElement('div');
-        card.className = 'product-card';
-        card.style.animationDelay = `${index * 0.05}s`;
+        card.className = 'product-card reveal';
+        card.style.transitionDelay = `${(index % 4) * 0.1}s`;
         card.innerHTML = `
             <div class="product-img-wrapper">
                 <img src="${veg.image}" alt="${veg.name}">
@@ -160,8 +162,11 @@ function renderProducts(products) {
             </div>
         `;
         grid.appendChild(card);
+        // Observe newly added card
+        if (typeof observer !== 'undefined') observer.observe(card);
     });
 }
+
 
 // ---------- FILTER & SEARCH ----------
 function setupFilters() {
