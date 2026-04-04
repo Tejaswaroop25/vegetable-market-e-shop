@@ -378,6 +378,32 @@
             ? (window.location.port === '5000' ? '' : 'http://localhost:5000')
             : (window.location.protocol === 'file:' ? 'http://localhost:5000' : '');
 
+        // --- Theme Logic ---
+        function initTheme() {
+            const toggleSwitch = document.getElementById('checkbox-admin');
+            const currentTheme = localStorage.getItem('theme');
+
+            if (currentTheme) {
+                document.documentElement.setAttribute('data-theme', currentTheme);
+                if (currentTheme === 'dark' && toggleSwitch) {
+                    toggleSwitch.checked = true;
+                }
+            }
+
+            if (toggleSwitch) {
+                toggleSwitch.addEventListener('change', function (e) {
+                    if (e.target.checked) {
+                        document.documentElement.setAttribute('data-theme', 'dark');
+                        localStorage.setItem('theme', 'dark');
+                    } else {
+                        document.documentElement.setAttribute('data-theme', 'light');
+                        localStorage.setItem('theme', 'light');
+                    }
+                });
+            }
+        }
+        initTheme();
+
         // Use toast from script.js logic manually here
         function showToast(message, type = 'success') {
             const container = document.getElementById('toast-container');
