@@ -12,28 +12,33 @@
 
 <body>
     <nav class="navbar">
-        <div class="navbar-top">
+        <div class="navbar-top container">
+            <div class="menu-btn" id="menuBtnMain">
+                <i class="fa-solid fa-ellipsis-v"></i>
+                <div class="menu-dropdown" id="menuDropdownMain">
+                    <a href="index.html"><i class="fa-solid fa-home"></i> Home</a>
+                    <a href="myorders.html" id="myOrdersLinkNav" style="display:none;"><i class="fa-solid fa-box"></i> My Orders</a>
+                    <a href="admin.html" id="adminBtnNav" class="btn-admin" style="display:none;"><i class="fa-solid fa-user-shield"></i> Admin</a>
+                    <a href="login.html" id="loginBtnNav"><i class="fa-solid fa-user"></i> Login</a>
+                    <hr>
+                    <div class="theme-menu-item">
+                        <span><i class="fa-solid fa-moon"></i> Dark Mode</span>
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox" />
+                                <div class="slider"></div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="logo centered-logo">
                 <i class="fa-solid fa-leaf"></i> Fresh Vegetables
             </div>
-            <div class="theme-switch-wrapper">
-                <label class="theme-switch" for="checkbox">
-                    <input type="checkbox" id="checkbox" />
-                    <div class="slider"></div>
-                </label>
-            </div>
-        </div>
-        <div class="navbar-bottom">
-            <div class="nav-links">
-                <a href="index.html" class="active">Home</a>
-                <a href="myorders.html" id="myOrdersLinkNav" style="display:none;">My Orders</a>
-                <a href="admin.html" id="adminBtnNav" class="btn-admin" style="display:none;">Admin</a>
-                <a href="login.html" id="loginBtnNav">Login</a>
-                <a href="cart.html" class="cart-icon-nav">
-                    <i class="fa-solid fa-shopping-cart"></i>
-                    <span class="cart-count">0</span>
-                </a>
-            </div>
+            <a href="cart.html" class="cart-icon-nav-top">
+                <i class="fa-solid fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </a>
         </div>
     </nav>
     <header class="hero">

@@ -15,6 +15,19 @@ let deliveryCharges = 0;
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
+    // Menu Dropdown Logic
+    const menuBtn = document.getElementById('menuBtnMain');
+    const menuDropdown = document.getElementById('menuDropdownMain');
+    if (menuBtn && menuDropdown) {
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            menuDropdown.classList.toggle('active');
+        });
+        document.addEventListener('click', () => {
+            menuDropdown.classList.remove('active');
+        });
+    }
+
     initTheme();
     checkAuthState();
     updateCartCount();
