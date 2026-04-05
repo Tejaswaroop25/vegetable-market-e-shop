@@ -93,7 +93,8 @@ a {
     margin: 0 auto;
     padding: 10px 40px;
     display: flex;
-    justify-content: center; /* Centered links for cleaner look */
+    justify-content: center;
+    /* Centered links for cleaner look */
     align-items: center;
 }
 
@@ -110,7 +111,8 @@ a {
     width: 100%;
     display: flex;
     justify-content: center;
-    margin: 40px 0 20px 0; /* Clean, intentional spacing */
+    margin: 40px 0 20px 0;
+    /* Clean, intentional spacing */
     position: relative;
     z-index: 10;
 }
@@ -127,7 +129,8 @@ a {
 .search-bar input {
     width: 100%;
     padding: 14px 28px;
-    background: rgba(255, 255, 255, 0.25); /* More translucent */
+    background: rgba(255, 255, 255, 0.25);
+    /* More translucent */
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     border: 1.5px solid rgba(255, 255, 255, 0.3);
@@ -137,7 +140,7 @@ a {
     font-weight: 500;
     color: var(--text-main);
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    box-shadow: 
+    box-shadow:
         0 8px 32px rgba(0, 0, 0, 0.06),
         0 4px 8px rgba(0, 0, 0, 0.03),
         inset 0 1px 2px rgba(255, 255, 255, 0.4);
@@ -149,16 +152,17 @@ a {
 
 .search-bar:hover input {
     background: rgba(255, 255, 255, 0.3);
-    box-shadow: 
+    box-shadow:
         0 15px 45px rgba(0, 0, 0, 0.1),
         0 8px 15px rgba(0, 0, 0, 0.05),
         inset 0 1px 2px rgba(255, 255, 255, 0.5);
 }
 
 [data-theme="dark"] .search-bar input {
-    background: rgba(255, 255, 255, 0.05); /* Very subtle white glow on dark */
+    background: rgba(255, 255, 255, 0.05);
+    /* Very subtle white glow on dark */
     border-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 
+    box-shadow:
         0 8px 32px rgba(0, 0, 0, 0.4),
         0 2px 5px rgba(255, 255, 255, 0.02);
 }
@@ -167,15 +171,15 @@ a {
     background: rgba(255, 255, 255, 0.35);
     border-color: var(--primary-light);
     transform: scale(1.02);
-    box-shadow: 
-        0 15px 50px rgba(46, 125, 50, 0.15), 
+    box-shadow:
+        0 15px 50px rgba(46, 125, 50, 0.15),
         0 0 0 5px rgba(76, 175, 80, 0.1);
 }
 
 [data-theme="dark"] .search-bar input:focus {
     background: rgba(255, 255, 255, 0.1);
-    box-shadow: 
-        0 15px 50px rgba(0, 0, 0, 0.5), 
+    box-shadow:
+        0 15px 50px rgba(0, 0, 0, 0.5),
         0 0 0 5px rgba(76, 175, 80, 0.2);
 }
 
@@ -1037,7 +1041,7 @@ footer {
     opacity: 0;
     transform: translateY(20px) scale(0.97);
     filter: blur(8px);
-    transition: 
+    transition:
         opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
         transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
         filter 0.7s ease;
@@ -1292,4 +1296,20 @@ footer {
         padding: 40px 30px;
         gap: 25px;
     }
+}
+
+grid-template-columns: 1fr;
+}
+
+.seller-map-preview {
+    height: 300px;
+    order: -1;
+    border-left: none;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.seller-details {
+    padding: 40px 30px;
+    gap: 25px;
+}
 }
