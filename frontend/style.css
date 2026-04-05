@@ -112,49 +112,68 @@ a {
     max-width: 500px;
     margin: 0 20px;
     position: relative;
-    transition: var(--transition);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .search-bar input {
     width: 100%;
-    padding: 12px 25px;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 14px 28px;
+    background: rgba(255, 255, 255, 0.25); /* More translucent */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
     border-radius: 50px;
     outline: none;
     font-size: 16px;
+    font-weight: 500;
     color: var(--text-main);
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     box-shadow: 
-        0 4px 15px rgba(0, 0, 0, 0.05),
-        inset 0 1px 1px rgba(255, 255, 255, 0.2);
+        0 8px 32px rgba(0, 0, 0, 0.06),
+        0 4px 8px rgba(0, 0, 0, 0.03),
+        inset 0 1px 2px rgba(255, 255, 255, 0.4);
+}
+
+.search-bar:hover {
+    transform: translateY(-3px);
+}
+
+.search-bar:hover input {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 
+        0 15px 45px rgba(0, 0, 0, 0.1),
+        0 8px 15px rgba(0, 0, 0, 0.05),
+        inset 0 1px 2px rgba(255, 255, 255, 0.5);
 }
 
 [data-theme="dark"] .search-bar input {
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05); /* Very subtle white glow on dark */
+    border-color: rgba(255, 255, 255, 0.1);
     box-shadow: 
-        0 4px 15px rgba(0, 0, 0, 0.2),
-        inset 0 1px 1px rgba(255, 255, 255, 0.05);
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        0 2px 5px rgba(255, 255, 255, 0.02);
 }
 
 .search-bar input:focus {
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.35);
     border-color: var(--primary-light);
+    transform: scale(1.02);
     box-shadow: 
-        0 10px 25px rgba(0, 0, 0, 0.1), 
-        0 0 0 4px rgba(76, 175, 80, 0.15);
+        0 15px 50px rgba(46, 125, 50, 0.15), 
+        0 0 0 5px rgba(76, 175, 80, 0.1);
 }
 
 [data-theme="dark"] .search-bar input:focus {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        0 15px 50px rgba(0, 0, 0, 0.5), 
+        0 0 0 5px rgba(76, 175, 80, 0.2);
 }
 
 .search-bar input::placeholder {
     color: var(--text-muted);
-    opacity: 0.7;
+    opacity: 0.6;
+    letter-spacing: 0.5px;
 }
 
 .nav-links {
