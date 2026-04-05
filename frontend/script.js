@@ -87,10 +87,9 @@ function checkAuthState() {
     }
 
     if (userAuth && userAuth.loggedIn && loginBtn) {
-        loginBtn.innerHTML = `<i class="fa-solid fa-sign-out-alt"></i> Logout`;
+        loginBtn.innerHTML = `<i class="fa-solid fa-right-from-bracket"></i> Logout (${userAuth.name})`;
         loginBtn.classList.remove('btn-login');
         loginBtn.classList.add('btn-logout');
-        loginBtn.title = `Logged in as ${userAuth.name}`; // Keep full name in tooltip
         loginBtn.href = "#";
         loginBtn.onclick = (e) => {
             e.preventDefault();
