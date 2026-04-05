@@ -232,7 +232,7 @@ a {
 
 .search-bar input {
     width: 100%;
-    padding: 14px 28px 14px 50px; /* Space for search icon */
+    padding: 14px 50px 14px 28px; /* Space for search icon on right */
     background: rgba(255, 255, 255, 0.25);
     /* More translucent */
     backdrop-filter: blur(15px);
@@ -252,7 +252,7 @@ a {
 
 .search-icon-inside {
     position: absolute;
-    left: 20px;
+    right: 20px; /* Right side */
     top: 50%;
     transform: translateY(-50%);
     color: var(--text-muted);
