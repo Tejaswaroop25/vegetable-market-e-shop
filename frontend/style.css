@@ -1396,6 +1396,71 @@ footer {
     transform: translateY(-5px);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
 }
+/* --- Responsive Media Queries --- */
+@media (max-width: 768px) {
+    .navbar-top {
+        padding: 0 15px;
+    }
+
+    .centered-logo {
+        font-size: 20px; /* Smaller logo on mobile */
+        gap: 8px;
+    }
+
+    .logo i {
+        font-size: 18px;
+    }
+
+    .menu-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 20px;
+    }
+
+    .menu-dropdown {
+        min-width: 200px;
+        padding: 10px;
+        top: 50px;
+    }
+
+    .menu-dropdown a {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+
+    .cart-icon-nav-top {
+        font-size: 20px;
+    }
+
+    .hero h1 {
+        font-size: 48px; /* Responsive Title */
+        letter-spacing: -1px;
+    }
+
+    .search-bar {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .centered-logo {
+        font-size: 18px;
+    }
+
+    .centered-logo span {
+        display: none; /* Hide 'Vegetables' if it's too long, keep icon + 'Fresh' if needed, or just shrink further */
+    }
+
+    /* Alternatively, just hide the leaf icon or name as needed */
+    .hero h1 {
+        font-size: 36px;
+    }
+    
+    .search-bar-container {
+        margin-top: 20px;
+    }
+}
+
 /* Vegetable Rain Animation */
 .veg-rain {
     position: fixed;
