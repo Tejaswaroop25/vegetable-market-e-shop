@@ -128,7 +128,7 @@ a {
 
 .search-bar input {
     width: 100%;
-    padding: 14px 28px;
+    padding: 14px 28px 14px 50px; /* Space for search icon */
     background: rgba(255, 255, 255, 0.25);
     /* More translucent */
     backdrop-filter: blur(15px);
@@ -144,6 +144,25 @@ a {
         0 8px 32px rgba(0, 0, 0, 0.06),
         0 4px 8px rgba(0, 0, 0, 0.03),
         inset 0 1px 2px rgba(255, 255, 255, 0.4);
+}
+
+.search-icon-inside {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    opacity: 0.6;
+    font-size: 18px;
+    z-index: 5;
+    pointer-events: none;
+    transition: var(--transition);
+}
+
+.search-bar:focus-within .search-icon-inside {
+    color: var(--primary-color);
+    opacity: 1;
+    transform: translateY(-50%) scale(1.1);
 }
 
 .search-bar:hover {
@@ -1279,37 +1298,30 @@ footer {
     transform: translateY(-5px);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
 }
+/* Vegetable Rain Animation */
+.veg-rain {
+    position: fixed;
+    top: -50px;
+    z-index: 9999;
+    pointer-events: none;
+    font-size: 30px;
+    animation: rainFall 2s linear forwards;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+}
 
-@media (max-width: 992px) {
-    .seller-card {
-        grid-template-columns: 1fr;
+@keyframes rainFall {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(0.8);
+        opacity: 0;
     }
-
-    .seller-map-preview {
-        height: 300px;
-        order: -1;
-        border-left: none;
-        border-bottom: 1px solid var(--border-color);
+    10% {
+        opacity: 1;
     }
-
-    .seller-details {
-        padding: 40px 30px;
-        gap: 25px;
+    90% {
+        opacity: 1;
     }
-}
-
-grid-template-columns: 1fr;
-}
-
-.seller-map-preview {
-    height: 300px;
-    order: -1;
-    border-left: none;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.seller-details {
-    padding: 40px 30px;
-    gap: 25px;
-}
+    100% {
+        transform: translateY(110vh) rotate(720deg) scale(1.2);
+        opacity: 0;
+    }
 }
