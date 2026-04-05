@@ -144,6 +144,12 @@ a {
     width: 20px;
     font-size: 18px;
     color: var(--primary-color);
+    transition: var(--transition);
+}
+
+.menu-dropdown a.btn-admin i,
+.menu-dropdown a.btn-logout i {
+    color: white !important;
 }
 
 .menu-dropdown a:hover {
