@@ -91,9 +91,9 @@ a {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 5px 40px;
+    padding: 10px 40px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Centered links for cleaner look */
     align-items: center;
 }
 
@@ -106,11 +106,20 @@ a {
     gap: 8px;
 }
 
+.search-bar-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 40px 0 20px 0; /* Clean, intentional spacing */
+    position: relative;
+    z-index: 10;
+}
+
 .search-bar {
     display: flex;
-    flex: 1;
-    max-width: 500px;
-    margin: 0 20px;
+    width: 90%;
+    max-width: 650px;
+    margin: 0 auto;
     position: relative;
     transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
